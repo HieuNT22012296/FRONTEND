@@ -14,7 +14,7 @@ import Loading from '../../components/LoadingComponent/Loading';
 import { updateUser } from '../../redux/slides/userSlide';
 import { useNavigate } from 'react-router-dom';
 import { removeAllOrderProduct } from '../../redux/slides/orderSlide';
-import { PayPalButton } from "react-paypal-button-v2";
+import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import * as PaymentService from '../../services/PaymentService'
 
 
@@ -22,6 +22,9 @@ import * as PaymentService from '../../services/PaymentService'
 const PaymentPage = () => {
     const order = useSelector((state) => state.order)
     const user = useSelector((state) => state.user)
+
+    // This value is from the props in the UI
+    const style = {"layout":"vertical"};
 
     const [delivery, setDelivery] = useState('fast')
     const [payment, setPayment] = useState('later_money')
@@ -141,6 +144,7 @@ const PaymentPage = () => {
             paidAt: details.update_time,
             email: user?.email,
         })
+        console.log('details, data', details, data)
     }
 
     const mutationUpdate = useMutationHooks(
@@ -197,6 +201,7 @@ const PaymentPage = () => {
           message.error()
         }
       }, [isSuccess, isError])
+      
     const handleUpdateInforUser = () => {
         const { name, phone, address, city } = stateUserDetails
         if(name && phone && address && city) {
@@ -235,6 +240,68 @@ const PaymentPage = () => {
         }
         document.body.appendChild(script)
     }
+
+    function createOrder() {
+        // replace this url with your server
+        return fetch("https://react-paypal-js-storybook.fly.dev/api/paypal/create-order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // use the "body" param to optionally pass additional order information
+            // like product ids and quantities
+            body: JSON.stringify({
+                cart: [
+                    {
+                        sku: "1blwyeo8",
+                        quantity: 2,
+                    },
+                ],
+            }),
+        })
+            .then((response) => response.json())
+            .then((order) => {
+                // Your code here after create the order
+                return order.id;
+            });
+    }
+
+    const onApprove = (data) => {
+        // replace this url with your server
+        return fetch("https://react-paypal-js-storybook.fly.dev/api/paypal/capture-order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                orderID: data.orderID,
+            }),
+        })
+            .then((response) => response.json())
+            .then((orderData) => {
+                // Your code here after capture the order
+            });
+    }
+    
+    // Custom component to wrap the PayPalButtons and show loading spinner
+    const ButtonWrapper = ({ showSpinner }) => {
+        const [{ isPending }] = usePayPalScriptReducer();
+    
+        return (
+            <>
+                { (showSpinner && isPending) && <div className="spinner" /> }
+                <PayPalButtons
+                    style={style}
+                    disabled={false}
+                    forceReRender={[style]}
+                    fundingSource={undefined}
+                    createOrder={onSuccessPaypal}
+                    onApprove={addPaymentScript}
+                />
+            </>
+        );
+    }
+    
 
     useEffect(() => {
         if(!window.paypal) {
@@ -304,14 +371,16 @@ const PaymentPage = () => {
                             </div>
                             {payment === 'paypal' && sdkReady ? (
                                 <div style={{marginLeft: '40px', width: '360px'}}>
-                                    <PayPalButton
-                                        amount={Math.round(totalPriceMemo)}
+                                    <PayPalScriptProvider 
+                                        amount={Math.round(totalPriceMemo / 30000)}
                                         // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                                         onSuccess={onSuccessPaypal}
                                         onError={() => {
-                                            alert('Error')
+                                          alert('Error')
                                         }}
-                                    />
+                                        options={{ clientId: "test", components: "buttons", currency: "USD" }}>
+                                        <ButtonWrapper showSpinner={false} />
+                                    </PayPalScriptProvider>
                                 </div>
                                  
                             ) : (
