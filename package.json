@@ -52,6 +52,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://qlbh-dtdd-backend.onrender.com"
+  "proxy": "http://localhost:3001"
 }
 
