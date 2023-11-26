@@ -14,7 +14,7 @@ import Loading from '../../components/LoadingComponent/Loading';
 import { updateUser } from '../../redux/slides/userSlide';
 import { useNavigate } from 'react-router-dom';
 import { removeAllOrderProduct } from '../../redux/slides/orderSlide';
-import { PayPalButton } from "react-paypal-button-v2";
+import { PayPalButton } from "@paypal/react-paypal-js";
 import * as PaymentService from '../../services/PaymentService'
 
 
