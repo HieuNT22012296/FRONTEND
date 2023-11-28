@@ -6,7 +6,12 @@ const ContactAndAboutUs = () => (
   <WrapperContactAndAboutUs>
     <ContactInfo>
       <h2>Instructors</h2>
-      <p>Đặng Thanh Linh Phú</p>
+      <div>
+        <p>Đặng Thanh Linh Phú</p>
+        <p>Lecturers: Hoa Sen University</p>
+        <p>Email: phu.dtl@hoasen.edu.vn</p>
+        <p>Phone: +123 456 7890</p>     
+      </div>
     </ContactInfo>
     <ContactInfo>
       
@@ -19,14 +24,17 @@ const ContactAndAboutUs = () => (
       </div>
       <div>
         <p>Nguyễn Trung Hiếu</p>
-        <p>Email: 22012296@sinhvien.hoasen.edu.vn</p>
+        <p>Email: hieu.nt12296@sinhvien.hoasen.edu.vn</p>
         <p>Phone: +123 456 7890</p>
         <p>Mssv: 22012296</p>
       </div>
     </ContactInfo>
     <AboutUsInfo>
       <h2>About Us</h2>
-      <p>Ngày bắt đầu Dự án Website: 11/09/2023</p>
+      <div>
+        <p>Ngày bắt đầu Dự án Website: 11/09/2023</p>
+        <p>Phương châm chúng tôi "Khách hàng là thượng đế"</p>
+      </div>
     </AboutUsInfo>
   </WrapperContactAndAboutUs>
 );
