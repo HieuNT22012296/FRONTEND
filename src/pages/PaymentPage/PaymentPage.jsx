@@ -1,7 +1,6 @@
-import {Checkbox, Form, Radio, message } from 'antd'
+import {Checkbox, Form, Radio } from 'antd'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Lable, WrapperInfo, WrapperLeft, WrapperRadio, WrapperRight, WrapperTotal } from './style';
-
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { convertPrice } from '../../utils';
@@ -13,15 +12,16 @@ import * as OrderService from '../../services/OrderService'
 import Loading from '../../components/LoadingComponent/Loading';
 import { updateUser } from '../../redux/slides/userSlide';
 import { useNavigate } from 'react-router-dom';
+import * as message from '../../components/Message/Message';
 import { removeAllOrderProduct } from '../../redux/slides/orderSlide';
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import * as PaymentService from '../../services/PaymentService'
 
 
-
 const PaymentPage = () => {
     const order = useSelector((state) => state.order)
     const user = useSelector((state) => state.user)
+    console.log('order', order)
 
     // This value is from the props in the UI
     const style = {"layout":"vertical"};
@@ -96,8 +96,8 @@ const PaymentPage = () => {
 
     const handleAddOrder = () => {
         if(user?.access_token && order?.orderItemsSelected && user?.name
-            && user?.address && user?.phone && user?.city && priceMemo && user?.id) {
-                // eslint-disable-next-line no-unused-expressions
+            && user?.address && user?.phone && user?.city && priceMemo && user?.id){
+               // eslint-disable-next-line no-unused-expressions
                 mutationAddOrder.mutate({
                     token: user?.access_token,
                     orderItems: order?.orderItemsSelected,
@@ -178,6 +178,7 @@ const PaymentPage = () => {
     )
 
     const {isLoading, data} = mutationUpdate
+
     const {data: dataAddOrder, isLoading: isLoadingAddOrder, isSuccess, isError} = mutationAddOrder
 
     useEffect(() => {
@@ -189,7 +190,7 @@ const PaymentPage = () => {
         
             dispatch(removeAllOrderProduct({listChecked: arrOrdered}))
             message.success('Đặt hàng thành công')
-            navigate('/ordersuccess', {
+            navigate('/ordersuccess', {  
                 state: {
                     delivery,
                     payment,

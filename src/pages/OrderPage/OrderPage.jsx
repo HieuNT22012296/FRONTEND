@@ -278,7 +278,7 @@ const OrderPage = () => {
                             </WrapperInfo> 
                         <WrapperInfo>
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                            <span>Tạm tính</span>
+                            <span>Giá Sản Phẩm</span>
                             <span style={{color: '#000', fontSize: '14px', fontWeight: 'bold'}}>{convertPrice(priceMemo)}</span>
                             </div>
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
