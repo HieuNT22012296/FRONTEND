@@ -33,7 +33,7 @@ const ContactAndAboutUs = () => (
       <h2>About Us</h2>
       <div>
         <p>Ngày bắt đầu Dự án Website: 11/09/2023</p>
-        <p>Phương châm chúng tôi "Khách hàng là thượng đế"</p>
+        <p>Phương châm "Công Nghệ Tạo Nên Sự Khác Biệt"</p>
       </div>
     </AboutUsInfo>
   </WrapperContactAndAboutUs>
