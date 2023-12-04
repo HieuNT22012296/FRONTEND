@@ -27,7 +27,28 @@ const MyOrderPage = () => {
   const queryOrder = useQuery({ queryKey: ['orders'], queryFn: fetchMyOrder }, {
     enabled: state?.id && state?.token
   })
+
   const { isLoading, data } = queryOrder
+
+  // const mutationIdOrder = useMutationHooks(
+  //   (data) => {
+  //     console.log('data', data)
+  //     const { id, idOrder, token } = data
+  //     const res = OrderService.getDetailsOrder(id, idOrder, token)
+  //     return res
+  //   }
+  // )
+
+  
+  // const handleDetailsOrder = ({id, idOrder, order}) => {
+  //   console.log('order', order)
+  //   mutationIdOrder.mutate({ id: order?.user, idOrder: order?._id, token: state?.token }, {
+  //     onSuccess: () => {
+  //       queryOrder.refetch()
+  //     },
+  //   })    
+  //   navigate(`/details-order/${id}/${idOrder}`)
+  // }
 
   const handleDetailsOrder = (id) => {
     navigate(`/details-order/${id}`, {
@@ -39,31 +60,31 @@ const MyOrderPage = () => {
 
   const mutation = useMutationHooks(
     (data) => {
-      const { id, token , orderItems, userId } = data
-      const res = OrderService.cancelOrder(id, token, orderItems, userId)
+      const { id, token , orderItems, idOrder } = data
+      const res = OrderService.cancelOrder(id, token, orderItems, idOrder)
       return res
     }
   )
 
   const handleCanceOrder = (order) => {
-    mutation.mutate({id : order._id, token:state?.token, orderItems: order?.orderItems, userId: user.id }, {
+    mutation.mutate({ id: user.id, token:state?.token, orderItems: order?.orderItems, idOrder : order._id }, {
       onSuccess: () => {
         queryOrder.refetch()
       },
     })
   }
 
-  const { isLoading: isLoadingCancel, isSuccess: isSuccessCancel, isError: isErrorCancle, data: dataCancel } = mutation
+  const { isLoading: isLoadingCancel, isSuccess: isSuccessCancel, isError: isErrorCancel, data: dataCancel } = mutation
 
   useEffect(() => {
     if (isSuccessCancel && dataCancel?.status === 'OK') {
       message.success()
     } else if(isSuccessCancel && dataCancel?.status === 'ERR') {
       message.error(dataCancel?.message)
-    }else if (isErrorCancle) {
+    }else if (isErrorCancel) {
       message.error()
     }
-  }, [isErrorCancle, isSuccessCancel])
+  }, [isErrorCancel, isSuccessCancel])
 
   const renderProduct = (data) => {
     return data?.map((order) => {
@@ -90,7 +111,7 @@ const MyOrderPage = () => {
   }
 
   return (
-    // <Loading isLoading={isLoading || isLoadingCancel}>
+    <Loading isLoading={isLoading || isLoadingCancel}>
       <WrapperContainer>
         <div style={{height: '100%', width: '1270px', margin: '0 auto'}}>
           <h4 style={{fontSize: '20px', textAlign: 'center'}}>Đơn hàng của tôi</h4>
@@ -131,7 +152,9 @@ const MyOrderPage = () => {
                       >
                       </ButtonComponent>
                       <ButtonComponent
+                      //  onClick={() => handleDetailsOrder({id: order?.user, idOrder: order?._id, order})}
                         onClick={() => handleDetailsOrder(order?._id)}
+
                         size={40}
                         styleButton={{
                             height: '36px',
@@ -150,7 +173,7 @@ const MyOrderPage = () => {
           </WrapperListOrder>
         </div>
       </WrapperContainer>
-    // </Loading>
+    </Loading>
   )
 }
 

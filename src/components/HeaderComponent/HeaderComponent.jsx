@@ -73,14 +73,14 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
     }
     return (
         <div style={{  heiht: '100%', width: '100%', display: 'flex',background: '#186c91', justifyContent: 'center' }}>
-            <WrapperHeader gutter={85} style={{height: '150px',justifyContent: isHiddenSearch && isHiddenSearch ? 'space-between' : 'unset'}}>
-                <Col span={5}>
+            <WrapperHeader gutter={10} style={{height: '150px',justifyContent: isHiddenSearch && isHiddenSearch ? 'space-between' : 'unset'}}>
+                <Col span={4}>
                     <WrapperTextHeader to='/'>
                         WebPhone
                     </WrapperTextHeader>
                 </Col>
                 {!isHiddenSearch && (
-                    <Col span={13}>
+                    <Col span={12}>
                         <ButtonInputSearch
                             size="large"
                             bordered={false}
@@ -90,7 +90,7 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
                         />
                     </Col>
                 )}      
-                <Col span={6} style={{ display: 'flex', gap: '54px', alignItems: 'center'}}>
+                <Col span={7} style={{ marginLeft: '100px',display: 'flex', gap: '54px', alignItems: 'center'}}>
                     <Loading isLoading={loading}>
                         <WrapperHeaderAccount>  
                             {userAvatar ? (
