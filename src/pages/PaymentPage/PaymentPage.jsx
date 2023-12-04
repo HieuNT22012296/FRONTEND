@@ -21,7 +21,7 @@ import * as PaymentService from '../../services/PaymentService'
 const PaymentPage = () => {
     const order = useSelector((state) => state.order)
     const user = useSelector((state) => state.user)
-    console.log('order', order)
+    console.log('user', user)
 
     // This value is from the props in the UI
     const style = {"layout":"vertical"};
@@ -93,7 +93,7 @@ const PaymentPage = () => {
     const totalPriceMemo = useMemo(() => {
         return Number(priceMemo) - Number(priceDiscountMemo) + Number(deliveryPriceMemo)
     }, [priceMemo, priceDiscountMemo, deliveryPriceMemo])
-
+    
     const handleAddOrder = () => {
         if(user?.access_token && order?.orderItemsSelected && user?.name
             && user?.address && user?.phone && user?.city && priceMemo && user?.id){
@@ -110,7 +110,8 @@ const PaymentPage = () => {
                     shippingPrice: deliveryPriceMemo,
                     totalPrice: totalPriceMemo,
                     user: user?.id,
-                    email: user?.email
+                    email: user?.email,
+                    id: user?.id
                 })
             }
         
@@ -165,11 +166,14 @@ const PaymentPage = () => {
 
     const mutationAddOrder = useMutationHooks(
         (data) => {
-          const {  
+          const {
+            id,  
           token,
           ...rests
            } = data
+           console.log('data', data)
           const res = OrderService.createOrder(
+            id,
             {...rests},
             token
           )
@@ -182,13 +186,16 @@ const PaymentPage = () => {
     const {data: dataAddOrder, isLoading: isLoadingAddOrder, isSuccess, isError} = mutationAddOrder
 
     useEffect(() => {
+        const arrOrderedName = []
+        const arrOrderedProductId = []
+
         if(isSuccess && dataAddOrder?.status === 'OK') {
-            const arrOrdered = []
+           
             order?.orderItemsSelected?.forEach(element => {
-                arrOrdered.push(element.product)
+                arrOrderedProductId.push(element.product)
             })
-        
-            dispatch(removeAllOrderProduct({listChecked: arrOrdered}))
+
+            dispatch(removeAllOrderProduct({listChecked: arrOrderedProductId}))
             message.success('Đặt hàng thành công')
             navigate('/ordersuccess', {  
                 state: {
@@ -198,7 +205,15 @@ const PaymentPage = () => {
                     totalPriceMemo: totalPriceMemo
                 }
             })
-        } else if (isError) {
+        }else if(dataAddOrder?.status === 'ERR'){
+
+            order?.orderItemsSelected?.forEach(element => {
+                if(element?.countInStock <= 311)
+                arrOrderedName.push(element.name)
+            })
+
+            message.error(`Sản phẩm ${arrOrderedName.join(', ')} đã hết hàng`)
+        }else if (isError) {
           message.error()
         }
       }, [isSuccess, isError])

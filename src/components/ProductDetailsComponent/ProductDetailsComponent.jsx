@@ -58,7 +58,7 @@ const ProductDetailsComponent = ({idProduct}) =>{
             navigate('/sign-in', {state: location?.pathname})
         }else {
              const orderRedux = order?.orderItems?.find((item) => item.product === productDetails?._id)
-            if((orderRedux?.amount + numProduct) <= orderRedux?.countInstock || (!orderRedux && productDetails?.countInStock > 0)) {
+            if((orderRedux?.amount + numProduct) <= orderRedux?.countInStock || (!orderRedux && productDetails?.countInStock > 0)) {
                 dispatch(addOrderProduct({
                     orderItem: {
                         name: productDetails?.name,
@@ -67,7 +67,7 @@ const ProductDetailsComponent = ({idProduct}) =>{
                         price: productDetails?.price,
                         product: productDetails?._id,
                         discount: productDetails?.discount,
-                        countInstock: productDetails?.countInStock
+                        countInStock: productDetails?.countInStock
                     }
                 }))
             } else {
@@ -82,7 +82,7 @@ const ProductDetailsComponent = ({idProduct}) =>{
 
     useEffect(() => {
         const orderRedux = order?.orderItems?.find((item) => item.product === productDetails?._id) 
-        if((orderRedux?.amount + numProduct) <= orderRedux?.countInstock || (!orderRedux && productDetails?.countInStock > 0)) {
+        if((orderRedux?.amount + numProduct) <= orderRedux?.countInStock || (!orderRedux && productDetails?.countInStock > 0)) {
             setErrorLimitOrder(false)
         } else if(productDetails?.countInStock === 0){
             setErrorLimitOrder(true)
@@ -105,19 +105,16 @@ const ProductDetailsComponent = ({idProduct}) =>{
             <Image src={productDetails?.image} alt= "image product" preview={false} />
             <Row style={{paddingTop: '10px', justifyContent: 'space-between'}} >
             <WrapperStyleColImage span={4}> 
-                <WrapperStyleImageSmall src={imageProductSmall} alt= "image small" preview={false} />
+                <WrapperStyleImageSmall src={productDetails?.image} alt= "image small" preview={false} />
             </WrapperStyleColImage>
             <WrapperStyleColImage span={4}> 
-                <WrapperStyleImageSmall src={imageProductSmall} alt= "image small" preview={false} />
+                <WrapperStyleImageSmall src={productDetails?.image} alt= "image small" preview={false} />
             </WrapperStyleColImage>
             <WrapperStyleColImage span={4}> 
-                <WrapperStyleImageSmall src={imageProductSmall} alt= "image small" preview={false} />
+                <WrapperStyleImageSmall src={productDetails?.image} alt= "image small" preview={false} />
             </WrapperStyleColImage>
             <WrapperStyleColImage span={4}> 
-                <WrapperStyleImageSmall src={imageProductSmall} alt= "image small" preview={false} />
-            </WrapperStyleColImage>
-            <WrapperStyleColImage span={4}> 
-                <WrapperStyleImageSmall src={imageProductSmall} alt= "image small" preview={false} />
+                <WrapperStyleImageSmall src={productDetails?.image} alt= "image small" preview={false} />
             </WrapperStyleColImage>
             </Row>
             </Col>

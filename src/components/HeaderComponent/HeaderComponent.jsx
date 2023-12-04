@@ -72,8 +72,8 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
         dispatch(searchProduct(e.target.value))
     }
     return (
-        <div style={{  heiht: '100%', width: '100%', display: 'flex',background: '#9255FD', justifyContent: 'center' }}>
-            <WrapperHeader gutter={85} style={{justifyContent: isHiddenSearch && isHiddenSearch ? 'space-between' : 'unset'}}>
+        <div style={{  heiht: '100%', width: '100%', display: 'flex',background: '#186c91', justifyContent: 'center' }}>
+            <WrapperHeader gutter={85} style={{height: '150px',justifyContent: isHiddenSearch && isHiddenSearch ? 'space-between' : 'unset'}}>
                 <Col span={5}>
                     <WrapperTextHeader to='/'>
                         WebPhone
@@ -81,14 +81,14 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
                 </Col>
                 {!isHiddenSearch && (
                     <Col span={13}>
-                    <ButtonInputSearch
-                        size="large"
-                        bordered={false}
-                        textButton="Tìm Kiếm"
-                        placeholder="Input Search Text"
-                        onChange={onSearch}
-                    />
-                </Col>
+                        <ButtonInputSearch
+                            size="large"
+                            bordered={false}
+                            textButton="Tìm Kiếm"
+                            onClick={onSearch}
+                            placeholder="Input Search Text"
+                        />
+                    </Col>
                 )}      
                 <Col span={6} style={{ display: 'flex', gap: '54px', alignItems: 'center'}}>
                     <Loading isLoading={loading}>
@@ -120,12 +120,12 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
                         </WrapperHeaderAccount>
                     </Loading>
                     {!isHiddenCart &&(
-                        <div onClick={() => navigate('/order')} style={{cursor: 'pointer'}}>      
-                        <Badge count={order?.orderItems?.length} size="small">      
-                        <ShoppingCartOutlined style={{ fontSize: '30px', color: '#fff' }}/>
-                        </Badge> 
-                        <WrapperTextHeaderSmall>Giỏ Hàng</WrapperTextHeaderSmall>            
-                    </div>
+                        <div onClick={() => navigate('/order')} style={{cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>      
+                            <Badge count={order?.orderItems?.length} size="small">      
+                            <ShoppingCartOutlined style={{ fontSize: '30px', color: '#fff' }}/>
+                            </Badge> 
+                            <WrapperTextHeaderSmall>Giỏ Hàng</WrapperTextHeaderSmall>            
+                        </div>
                     )}
                     
                 </Col>

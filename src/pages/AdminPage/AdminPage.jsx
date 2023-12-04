@@ -51,7 +51,6 @@ const AdminPage = () => {
             background: '#F0F8FF',
             boxshadow: '1px 1px 2px rgb(146, 85, 253)',
             height: '100vh'
-            
           }}
           items={items}
           onClick={handleOnClick}

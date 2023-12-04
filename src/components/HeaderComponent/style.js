@@ -29,13 +29,14 @@ export const WrapperHeaderAccount = styled.div`
     max-width: 200px;
 `
 export const WrapperTextHeaderSmall = styled.span`
-    font-size: 12px;
+    font-size: 15px;
     color: #fff;
+    margin-left: 5px;
     // white-space:nowrap;
 `
 export const WrapperContentPopup = styled.p`
     cursor: pointer;
     &:hover {
-        color: rgb(146, 85, 253);
+        color: #186c91;
     }
 `
