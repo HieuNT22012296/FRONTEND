@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const WrapperTypeProduct = styled.div`
     display: flex;
