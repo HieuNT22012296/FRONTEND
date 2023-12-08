@@ -6,7 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 const ContactAndAboutUs = () => (
   <WrapperContactAndAboutUs>
     {/* Cột cho Instructors */}
-    <Col xs={12} md={4} lg={2}>
+    <Col xs={12} md={4} lg={4}>
       <ContactInfo>
         <h2>Instructors</h2>
         <div>
@@ -38,7 +38,7 @@ const ContactAndAboutUs = () => (
     </Col>
 
     {/* Cột cho About Us */}
-    <Col xs={12} md={12} lg={6}>
+    <Col xs={12} md={12} lg={4}>
       <AboutUsInfo>
         <h2>About Us</h2>
         <div>

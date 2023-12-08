@@ -1,4 +1,4 @@
-import { Badge, Button, Col, Popover } from "antd";
+import { Badge, Button, Popover } from "antd";
 import React, { useEffect, useState } from "react";
 import { WrapperHeader, WrapperTextHeader, WrapperHeaderAccount, WrapperTextHeaderSmall, WrapperContentPopup } from "./style";
 
@@ -10,6 +10,7 @@ import * as UserService from '../../services/UserService'
 import { resetUser } from "../../redux/slides/userSlide";
 import Loading from "../LoadingComponent/Loading";
 import { searchProduct } from "../../redux/slides/productSlide";
+import { Container, Col, Row } from "react-bootstrap";
 
 const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
 
@@ -73,24 +74,14 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
     }
     return (
         <div style={{  heiht: '100%', width: '100%', display: 'flex',background: '#186c91', justifyContent: 'center' }}>
-            <WrapperHeader gutter={10} style={{height: '150px',justifyContent: isHiddenSearch && isHiddenSearch ? 'space-between' : 'unset'}}>
-                <Col span={4}>
+            <WrapperHeader style={{height: '150px',justifyContent: isHiddenSearch && isHiddenSearch ? 'space-between' : 'unset'}}>
+                <Col xs={4} md={4} lg={8}>
                     <WrapperTextHeader to='/'>
                         WebPhone
                     </WrapperTextHeader>
                 </Col>
-                {!isHiddenSearch && (
-                    <Col span={12}>
-                        <ButtonInputSearch
-                            size="large"
-                            bordered={false}
-                            textButton="Tìm Kiếm"
-                            onClick={onSearch}
-                            placeholder="Input Search Text"
-                        />
-                    </Col>
-                )}      
-                <Col span={7} style={{ marginLeft: '100px',display: 'flex', gap: '54px', alignItems: 'center'}}>
+                <Row style={{ justifyContent: 'flex-end' }}>
+                <Col xs={9} md={12} lg={1} style={{  gap: '20px'  }}>
                     <Loading isLoading={loading}>
                         <WrapperHeaderAccount>  
                             {userAvatar ? (
@@ -110,7 +101,7 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
                                 </Popover>
                             ) : (
                                 <div onClick={handleNavigateLogin} style={{ cursor: 'pointer'}}>
-                                    <WrapperTextHeaderSmall>Đăng Nhập/ Đăng Ký</WrapperTextHeaderSmall>
+                                    <WrapperTextHeaderSmall>Đăng Nhập/Đăng Ký</WrapperTextHeaderSmall>
                                     <div>
                                         <WrapperTextHeaderSmall>Tài Khoản</WrapperTextHeaderSmall>
                                         <CaretDownOutlined />
@@ -120,7 +111,7 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
                         </WrapperHeaderAccount>
                     </Loading>
                     {!isHiddenCart &&(
-                        <div onClick={() => navigate('/order')} style={{cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>      
+                        <div onClick={() => navigate('/order')} style={{cursor: 'pointer', display: 'flex', alignItems: 'center'}}>      
                             <Badge count={order?.orderItems?.length} size="small">      
                             <ShoppingCartOutlined style={{ fontSize: '30px', color: '#fff' }}/>
                             </Badge> 
@@ -129,6 +120,20 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
                     )}
                     
                 </Col>
+                </Row>
+                    <Col xs={10} md={8} lg={11} style={{alignItems: 'center', marginInline: '35px'}}>
+                
+                    {!isHiddenSearch && (
+                            <ButtonInputSearch
+                                size="large"
+                                bordered={false}
+                                textButton="Tìm Kiếm"
+                                onClick={onSearch}
+                                placeholder="Input Search Text"
+                            />
+                    )}     
+                    </Col>
+                
             </WrapperHeader>
         </div>
     )
