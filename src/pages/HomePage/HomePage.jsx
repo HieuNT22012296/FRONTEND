@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import TypeProduct from "../../components/TypeProduct/TypeProduct";
 import { WrapperProducts, WrapperButtonMore, WrapperTypeProduct } from "./style";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
@@ -52,27 +53,23 @@ const HomePage = () => {
 
     return (
         <Loading isLoading={isLoading || loading}>
-            <Container fluid>
-            <Row>
-
-             <Col md={3}>
-            {/* <div style={{ width: '1270px', margin: '0 auto'}}> */}
-
-            {/* <WrapperTypeProduct> */}
-                {typeProducts.map((item) => {
-                    return (
-                        <TypeProduct name={item} key={item} />
-                    )
-                })}
+           <div className="container">
+      <div className="d-flex justify-content-between">
+        {typeProducts.map((item) => (
+          <TypeProduct name={item} key={item} />
+        ))}
+      </div>
+      {/* Thêm nội dung khác tại đây */}
+    </div>
             {/* </WrapperTypeProduct> */}
             {/* </div> */}
 
-            </Col>
+            {/* </Col> */}
 
            
-                <Col md={9}>
-                <div className="row">
-                    <div className="col-md-12">
+                {/* <Col md={9}> */}
+                <div className='body' style={{height: 'auto',width: '100%', backgroundColor: '#efefef', }}>
+                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}>
                 <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
                         
                         {/* <WrapperProducts> */}
@@ -115,11 +112,11 @@ const HomePage = () => {
                         </div>
                     <ContactAndAboutUs />
                          </div>
-                        </Col>
+                        {/* </Col> */}
                         
                 
-            </Row>
-                        </Container>
+            {/* </Row> */}
+                        {/* </Container> */}
         </Loading>   
     )
 }
