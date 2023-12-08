@@ -71,11 +71,11 @@ const HomePage = () => {
 
            
                 <Col md={9}>
-                <div className='body' style={{ height: '100%',width: '100%', backgroundColor: '#efefef', }}>
-                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}>
+                {/* <div className='body' style={{ height: '100%',width: '100%', backgroundColor: '#efefef', }}>
+                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}> */}
                 <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
                         
-                        <WrapperProducts>
+                        {/* <WrapperProducts> */}
                             {products?.data?.map((product) => {
                                 return (
                                 <CardComponent
@@ -93,7 +93,7 @@ const HomePage = () => {
                                 />
                                 )
                             })}
-                        </WrapperProducts>
+                        {/* </WrapperProducts> */}
                         <div style={{width:'100%', display:'flex', justifyContent:'center', marginTop: '50px', marginBottom: '200px'}}>
                         <WrapperButtonMore 
                             textButton={isPreviousData ? 'Load more': "Xem Thêm"} 
@@ -112,9 +112,9 @@ const HomePage = () => {
                         />
 
                         </div>
-                        </div>
+                        {/* </div> */}
                     <ContactAndAboutUs />
-                         </div>
+                         {/* </div> */}
                         </Col>
                         
                 
