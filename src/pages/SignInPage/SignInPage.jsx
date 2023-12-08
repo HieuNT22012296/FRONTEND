@@ -12,6 +12,8 @@ import Loading from "../../components/LoadingComponent/Loading";
 import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/slides/userSlide";
+// import { GoogleLogin } from 'react-google-login';
+// import GoogleLoginButton from "../../components/LoginGgComponent/LoginGgComponent";
 
 const SignInPage = () => {
     const [isShowPassword, setIsShowPassword] = useState(false)
@@ -119,6 +121,13 @@ const SignInPage = () => {
               textButton={'Đăng nhập'}
               styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
             ></ButtonComponent>
+            {/* <GoogleLogin
+              clientId="268646320901-1qkkmtpj8dt8pbe08pig4n69r9f2rrd1.apps.googleusercontent.com"
+              buttonText="Đăng nhập bằng Google"
+              onSuccess={responseGoogleSignIn}
+              onFailure={responseGoogleSignIn}
+              cookiePolicy={'single_host_origin'}
+            /> */}
           </Loading>
             
                 <p><WrapperTextLight>Quên Mật khẩu?</WrapperTextLight></p>

@@ -54,15 +54,17 @@ const HomePage = () => {
     return (
         <Loading isLoading={isLoading || loading}>
         <Container fluid>
-        <Row>
-          {typeProducts.map((item) => (
-            <Col key={item} xs={6} md={1}>
-              {/* Điều chỉnh thuộc tính 'md' dựa trên thiết kế của bạn */}
-              <TypeProduct name={item} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+            <Row className="justify-content-center">
+                {typeProducts.map((item) => (
+                <Col key={item} xs={4} md={1}>
+                    {/* Điều chỉnh thuộc tính 'md' dựa trên thiết kế của bạn */}
+                    <TypeProduct name={item} />
+                </Col>
+                ))}
+            </Row>
+        </Container>
+
+
 
            
                 {/* <Col md={9}> */}
