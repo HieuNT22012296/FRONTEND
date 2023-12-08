@@ -53,29 +53,15 @@ const HomePage = () => {
 
     return (
         <Loading isLoading={isLoading || loading}>
-            {/* <Container fluid>
-            <Row>
-
-             <Col md={3}> */}
-             <div className="container" >
-                <div className="row" >
-                <div className="d-flex justify-content-between" > 
-                
-            {/* <div style={{ width: '1270px', margin: '0 auto'}}> */}
-
-            {/* <WrapperTypeProduct> */}
-                {typeProducts.map((item) => {
-                    return (
-                        <TypeProduct name={item} key={item} />
-                    )
-                })}
-                </div>
-                </div>
-             </div>
-            {/* </WrapperTypeProduct> */}
-            {/* </div> */}
-
-            {/* </Col> */}
+           <Container fluid>
+      <Row>
+        {typeProducts.map((item) => (
+          <Col md={1} key={item}>
+            <TypeProduct name={item} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
 
            
                 {/* <Col md={9}> */}
