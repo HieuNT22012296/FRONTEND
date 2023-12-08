@@ -71,8 +71,8 @@ const HomePage = () => {
 
            
                 <Col md={9}>
-                <div className='body' style={{ height: '100%',width: '100%', backgroundColor: '#efefef', }}>
-                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}>
+                <div className="row">
+                    <div className="col-md-12">
                 <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
                         
                         {/* <WrapperProducts> */}
