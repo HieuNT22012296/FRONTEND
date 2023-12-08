@@ -1,0 +1,10 @@
+
+  @media (max-width: 768px) {
+    .container-wrapper {
+      overflow-y: auto;
+    }
+    .text-center {
+        flex-wrap: nowrap;
+      }
+   
+  }

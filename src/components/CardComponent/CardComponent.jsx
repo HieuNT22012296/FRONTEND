@@ -4,6 +4,7 @@ import { WrapperCardStyle, StyleNameProduct, WrapperReportText,WrapperPriceText,
 import logo from '../../assets/images/logo.png'
 import { useNavigate } from "react-router-dom";
 import { convertPrice } from "../../utils";
+import { Col, Container, Row } from "react-bootstrap";
 
 
 const CardComponent = (props) => {
@@ -14,6 +15,9 @@ const CardComponent = (props) => {
   }
 
   return (
+
+      <Col xs={6} sm={6} md={1} lg={2} xl={3}>
+
     <WrapperCardStyle 
       hoverable
       headStyle={{ width: '200px', height: '200px' }}
@@ -43,6 +47,8 @@ const CardComponent = (props) => {
         <WrapperDiscountText>- {discount || 5} %</WrapperDiscountText>
       </WrapperPriceText>
     </WrapperCardStyle >
+    </Col>
+    
   )
 }
 

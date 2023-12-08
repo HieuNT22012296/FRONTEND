@@ -4,14 +4,15 @@ import styled from "styled-components";
 export const WrapperCardStyle = styled(Card)`
     width: 200px;
     & img {
-        height: 200px;
-        width: 200px;
-    },
+        height: 100%; /* Chia sẻ chiều cao của thẻ */
+        width: 100%;
+        object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    }
     position: relative;
-    background-color: ${props => props.disabled ? '#ccc' : '#fff'};
-    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+    background-color: ${props => (props.disabled ? "#ccc" : "#fff")};
+    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+`;
 
-`
 
 export const StyleNameProduct = styled.div`
     font-weight: 400;

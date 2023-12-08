@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Container, Row, Col } from 'react-bootstrap';
+// import { Container, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TypeProduct from "../../components/TypeProduct/TypeProduct";
-import { WrapperProducts, WrapperButtonMore, WrapperTypeProduct } from "./style";
+import { WrapperProducts, WrapperButtonMore, WrapperTypeProduct, CustomContainer, CustomRowType, CustomColType, CustomRowSlider, CustomRowProduct, CustomColProduct } from "./style";
+import "./style.css";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
 import Slider1 from '../../assets/images/Slider1.webp'
 import Slider2 from '../../assets/images/Slider2.webp'
@@ -53,16 +54,21 @@ const HomePage = () => {
 
     return (
         <Loading isLoading={isLoading || loading}>
-        <Container fluid>
-            <Row className="justify-content-center">
-                {typeProducts.map((item) => (
-                <Col key={item} xs={6} md={1}>
-                    {/* Điều chỉnh thuộc tính 'md' dựa trên thiết kế của bạn */}
-                    <TypeProduct name={item} />
-                </Col>
-                ))}
-            </Row>
-        </Container>
+            <div className="container-wrapper">
+                <CustomContainer >
+                    <CustomRowType className="text-center">
+                    {typeProducts.map((item) => (
+                        <CustomColType  key={item} >
+                        <TypeProduct name={item} />
+                        </CustomColType >
+                    ))}
+                    </CustomRowType>
+             
+                    </CustomContainer>
+
+
+                    </div>
+
 
 
 
@@ -70,9 +76,14 @@ const HomePage = () => {
                 {/* <Col md={9}> */}
                 {/* <div className='body' style={{height: 'auto',width: '100%', backgroundColor: '#efefef', }}>
                 <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}> */}
-                <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
-                        
-                        {/* <WrapperProducts> */}
+                <CustomContainer >
+                <CustomRowSlider style={{marginTop: '10px'}}>
+                    <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
+                </CustomRowSlider>
+                </CustomContainer>
+                <CustomContainer>
+                        <CustomRowProduct >
+                            
                             {products?.data?.map((product) => {
                                 return (
                                 <CardComponent
@@ -89,8 +100,10 @@ const HomePage = () => {
                                     selled={product.selled}
                                 />
                                 )
+
                             })}
-                        {/* </WrapperProducts> */}
+                        </CustomRowProduct>
+                        </CustomContainer>
                         <div style={{width:'100%', display:'flex', justifyContent:'center', marginTop: '50px', marginBottom: '200px'}}>
                         <WrapperButtonMore 
                             textButton={isPreviousData ? 'Load more': "Xem Thêm"} 
@@ -113,7 +126,6 @@ const HomePage = () => {
                     <ContactAndAboutUs />
                          </div>
                         {/* </Col> */}
-                        
                 
             {/* </Row> */}
                         {/* </Container> */}
