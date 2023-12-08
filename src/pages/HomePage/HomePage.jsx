@@ -53,14 +53,25 @@ const HomePage = () => {
 
     return (
         <Loading isLoading={isLoading || loading}>
-           <div className="container">
-      <div className="d-flex justify-content-between">
-        {typeProducts.map((item) => (
-          <TypeProduct name={item} key={item} />
-        ))}
-      </div>
-      {/* Thêm nội dung khác tại đây */}
-    </div>
+            {/* <Container fluid>
+            <Row>
+
+             <Col md={3}> */}
+             <div className="container" >
+                <div className="row" >
+                <div className="d-flex justify-content-between" > 
+                
+            {/* <div style={{ width: '1270px', margin: '0 auto'}}> */}
+
+            {/* <WrapperTypeProduct> */}
+                {typeProducts.map((item) => {
+                    return (
+                        <TypeProduct name={item} key={item} />
+                    )
+                })}
+                </div>
+                </div>
+             </div>
             {/* </WrapperTypeProduct> */}
             {/* </div> */}
 
@@ -68,8 +79,8 @@ const HomePage = () => {
 
            
                 {/* <Col md={9}> */}
-                <div className='body' style={{height: 'auto',width: '100%', backgroundColor: '#efefef', }}>
-                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}>
+                {/* <div className='body' style={{height: 'auto',width: '100%', backgroundColor: '#efefef', }}>
+                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}> */}
                 <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
                         
                         {/* <WrapperProducts> */}
@@ -108,8 +119,8 @@ const HomePage = () => {
                             onClick={() => setLimit((prev) => prev + 5)}
                         />
 
-                        </div>
-                        </div>
+                        {/* </div> */}
+                        {/* </div> */}
                     <ContactAndAboutUs />
                          </div>
                         {/* </Col> */}
