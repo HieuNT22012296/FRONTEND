@@ -56,16 +56,16 @@ const HomePage = () => {
             <Row>
 
              <Col md={3}>
-            <div style={{ width: '1270px', margin: '0 auto'}}>
+            {/* <div style={{ width: '1270px', margin: '0 auto'}}> */}
 
-            <WrapperTypeProduct>
+            {/* <WrapperTypeProduct> */}
                 {typeProducts.map((item) => {
                     return (
                         <TypeProduct name={item} key={item} />
                     )
                 })}
-            </WrapperTypeProduct>
-            </div>
+            {/* </WrapperTypeProduct> */}
+            {/* </div> */}
 
             </Col>
 
