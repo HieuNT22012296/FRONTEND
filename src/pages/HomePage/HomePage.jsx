@@ -53,15 +53,16 @@ const HomePage = () => {
 
     return (
         <Loading isLoading={isLoading || loading}>
-           <Container fluid>
-      <Row>
-        {typeProducts.map((item) => (
-          <Col md={1} key={item}>
-            <TypeProduct name={item} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
+        <Container fluid>
+        <Row>
+          {typeProducts.map((item) => (
+            <Col key={item} xs={6} md={1}>
+              {/* Điều chỉnh thuộc tính 'md' dựa trên thiết kế của bạn */}
+              <TypeProduct name={item} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
 
            
                 {/* <Col md={9}> */}
