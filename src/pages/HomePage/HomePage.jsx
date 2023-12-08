@@ -56,7 +56,7 @@ const HomePage = () => {
         <Container fluid>
             <Row className="justify-content-center">
                 {typeProducts.map((item) => (
-                <Col key={item} xs={2} md={1}>
+                <Col key={item} xs={6} md={1}>
                     {/* Điều chỉnh thuộc tính 'md' dựa trên thiết kế của bạn */}
                     <TypeProduct name={item} />
                 </Col>
