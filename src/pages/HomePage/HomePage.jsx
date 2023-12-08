@@ -54,9 +54,10 @@ const HomePage = () => {
         <Loading isLoading={isLoading || loading}>
             <Container fluid>
             <Row>
-            <div style={{ width: '1270px', margin: '0 auto'}}>
 
              <Col md={3}>
+            <div style={{ width: '1270px', margin: '0 auto'}}>
+
             <WrapperTypeProduct>
                 {typeProducts.map((item) => {
                     return (
@@ -64,12 +65,14 @@ const HomePage = () => {
                     )
                 })}
             </WrapperTypeProduct>
-            </Col>
             </div>
 
-            <div className='body' style={{ height: '100%',width: '100%', backgroundColor: '#efefef', }}>
-                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}>
+            </Col>
+
+           
                 <Col md={9}>
+                <div className='body' style={{ height: '100%',width: '100%', backgroundColor: '#efefef', }}>
+                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}>
                 <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
                         
                         <WrapperProducts>
@@ -109,11 +112,12 @@ const HomePage = () => {
                         />
 
                         </div>
+                        </div>
+                    <ContactAndAboutUs />
+                         </div>
                         </Col>
                         
-                    </div>
-                    <ContactAndAboutUs />
-            </div>
+                
             </Row>
                         </Container>
         </Loading>   
