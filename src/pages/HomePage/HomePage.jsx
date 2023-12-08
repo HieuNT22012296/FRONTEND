@@ -20,13 +20,14 @@ import { useSelector } from "react-redux";
 import Loading from "../../components/LoadingComponent/Loading";
 import { useDebounce } from "../../hooks/useDebounce";
 import ContactAndAboutUs from "../../components/ContactAndAboutUs/ContactAndAboutUs";
+import { Col, Row } from "react-bootstrap";
 
 
 const HomePage = () => {
     const seacrhProduct = useSelector((state) => state?.product?.search)
     const searchDebounce = useDebounce(seacrhProduct, 1000)
     const [loading, setLoading] = useState(false)
-    const [limit, setLimit] = useState(5)
+    const [limit, setLimit] = useState(6)
     const [typeProducts, setTypeProducts] = useState([])
 
     const fetchProductAll = async (context) => {
@@ -81,7 +82,7 @@ const HomePage = () => {
                     <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
                 </CustomRowSlider>
                 </CustomContainer>
-                <CustomContainer>
+                <CustomContainer style={{marginTop: '50px', alignContent:'center'}}>
                         <CustomRowProduct >
                             
                             {products?.data?.map((product) => {
@@ -104,7 +105,8 @@ const HomePage = () => {
                             })}
                         </CustomRowProduct>
                         </CustomContainer>
-                        <div style={{width:'100%', display:'flex', justifyContent:'center', marginTop: '50px', marginBottom: '200px'}}>
+                        <div style={{width:'100%', display:'flex', justifyContent:'center', marginTop: '10px', marginBottom: '50px'}}>
+                           
                         <WrapperButtonMore 
                             textButton={isPreviousData ? 'Load more': "Xem Thêm"} 
                             type="outline" 
@@ -118,17 +120,15 @@ const HomePage = () => {
                         
                             disabled={products?.total === products?.data?.length || products?.totalPage === 1}
                             styleTextButton={{ fontWeight: 500, color: products?.total === products?.data?.length && '#fff' }}
-                            onClick={() => setLimit((prev) => prev + 5)}
+                            onClick={() => setLimit((prev) => prev + 6)}
                         />
-
-                        {/* </div> */}
-                        {/* </div> */}
-                    <ContactAndAboutUs />
+                        
                          </div>
-                        {/* </Col> */}
+                        
+                        <ContactAndAboutUs />
                 
-            {/* </Row> */}
-                        {/* </Container> */}
+                        
+                        
         </Loading>   
     )
 }

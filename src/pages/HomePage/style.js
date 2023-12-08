@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 
 export const CustomContainer = styled(Container)`
-  
+ 
 `;
 
 export const CustomRowType = styled(Row)`
@@ -28,7 +28,7 @@ export const CustomRowSlider = styled(Row)`
 `;
 
 export const CustomRowProduct = styled(Row)`
-  
+
 `;
 
 export const CustomColProduct = styled(Col)`

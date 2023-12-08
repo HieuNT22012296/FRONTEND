@@ -16,37 +16,36 @@ const CardComponent = (props) => {
 
   return (
 
-      <Col xs={6} sm={6} md={1} lg={2} xl={3}>
-
-    <WrapperCardStyle 
-      hoverable
-      headStyle={{ width: '200px', height: '200px' }}
-      style={{ width: 240 }}
-      bodyStyle={{ padding: '10px' }}
-      cover={<img alt="example" src={image} />}
-      onClick={() => handleDetailsProduct(id)}
-    >
-     <img 
-        src={logo} alt="logo"
-        style={{
-        width: '68px',
-        height: '14px',
-        position: 'absolute',
-        top: -1,
-        left: -1,
-        borderTopLeftRadius: '3px'}} />
-      <StyleNameProduct>{name}</StyleNameProduct>
-      <WrapperReportText>
-      <span style={{ marginRight: '4px' }}>
-        <span>{rating}</span><StarFilled style={{fontSize: '12px', color: 'rgb(253, 216, 54'}} />
-      </span>
-        <WrapperStyleTextSell>| Đã bán {selled || 1000 }+</WrapperStyleTextSell>
-      </WrapperReportText>
-      <WrapperPriceText>
-        <span style={{marginRight: '8px'}}>{convertPrice(price)}</span>
-        <WrapperDiscountText>- {discount || 5} %</WrapperDiscountText>
-      </WrapperPriceText>
-    </WrapperCardStyle >
+    <Col style={{alignItems:'center'}}xs={6} xl={2}>
+      <WrapperCardStyle 
+        hoverable
+        headStyle={{ width: '200px', height: '200px' }}
+        style={{ width: 185 , marginBottom: 25}}
+        bodyStyle={{ padding: '20px' }}
+        cover={<img alt="example" src={image} />}
+        onClick={() => handleDetailsProduct(id)}
+      >
+        <img 
+          src={logo} alt="logo"
+          style={{
+          width: '68px',
+          height: '14px',
+          position: 'absolute',
+          top: -1,
+          left: -1,
+          borderTopLeftRadius: '3px'}} />
+        <StyleNameProduct>{name}</StyleNameProduct>
+        <WrapperReportText>
+          <span style={{ marginRight: '4px' }}>
+            <span>{rating}</span><StarFilled style={{fontSize: '12px', color: 'rgb(253, 216, 54'}} />
+          </span>
+          <WrapperStyleTextSell>| Đã bán {selled || 1000 }+</WrapperStyleTextSell>
+        </WrapperReportText>
+        <WrapperPriceText>
+          <span style={{marginRight: '8px'}}>{convertPrice(price)}</span>
+          <WrapperDiscountText>- {discount || 5} %</WrapperDiscountText>
+        </WrapperPriceText>
+      </WrapperCardStyle >
     </Col>
     
   )
