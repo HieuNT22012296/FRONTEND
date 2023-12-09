@@ -75,13 +75,13 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
     return (
         <div style={{  heiht: '100%', width: '100%', display: 'flex',background: '#186c91', justifyContent: 'center' }}>
             <WrapperHeader style={{height: '150px',justifyContent: isHiddenSearch && isHiddenSearch ? 'space-between' : 'unset'}}>
-                <Col xs={4} md={4} lg={8}>
+                <Col xs={5} md={4} lg={9}>
                     <WrapperTextHeader to='/'>
                         WebPhone
                     </WrapperTextHeader>
                 </Col>
-                <Row style={{ justifyContent: 'flex-end' }}>
-                <Col xs={9} md={12} lg={1} style={{  gap: '20px'  }}>
+                <Row style={{ justifyContent: 'left' }}>
+                <Col xs={1} md={12} lg={2} >
                     <Loading isLoading={loading}>
                         <WrapperHeaderAccount>  
                             {userAvatar ? (
@@ -121,7 +121,7 @@ const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
                     
                 </Col>
                 </Row>
-                    <Col xs={10} md={8} lg={11} style={{alignItems: 'center', marginInline: '35px'}}>
+                    <Col xs={10} md={8} lg={11} style={{alignItems: 'center', marginInline: '32px'}}>
                 
                     {!isHiddenSearch && (
                             <ButtonInputSearch
