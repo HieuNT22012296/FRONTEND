@@ -14,7 +14,7 @@ import { updateUser } from '../../redux/slides/userSlide';
 import { useNavigate } from 'react-router-dom';
 import * as message from '../../components/Message/Message';
 import { removeAllOrderProduct } from '../../redux/slides/orderSlide';
-import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons,  usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import * as PaymentService from '../../services/PaymentService'
 
 
@@ -30,7 +30,7 @@ const PaymentPage = () => {
     const [payment, setPayment] = useState('later_money')
     const navigate = useNavigate()
     const [sdkReady, setSdkReady] = useState(false)
-
+    const [clientId, setClientId] = useState('');
     const [isOpenModalUpdateInfo, setIsOpenModalUpdateInfo] = useState(false)
     const [stateUserDetails, setStateUserDetails] = useState({
         name: '',
@@ -257,67 +257,31 @@ const PaymentPage = () => {
         document.body.appendChild(script)
     }
 
-    function createOrder() {
-        // replace this url with your server
-        return fetch("https://react-paypal-js-storybook.fly.dev/api/paypal/create-order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            // use the "body" param to optionally pass additional order information
-            // like product ids and quantities
-            body: JSON.stringify({
-                cart: [
-                    {
-                        sku: "1blwyeo8",
-                        quantity: 2,
-                    },
-                ],
-            }),
-        })
-            .then((response) => response.json())
-            .then((order) => {
-                // Your code here after create the order
-                return order.id;
-            });
-    }
 
-    const onApprove = (data) => {
-        // replace this url with your server
-        return fetch("https://react-paypal-js-storybook.fly.dev/api/paypal/capture-order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                orderID: data.orderID,
-            }),
-        })
-            .then((response) => response.json())
-            .then((orderData) => {
-                // Your code here after capture the order
-            });
-    }
+    const onApprove = async () => {
+        const data = {
+          id: user?.id,
+          token: user?.access_token,
+          orderItems: order?.orderItemsSelected,
+          fullName: user?.name,
+          address: user?.address,
+          phone: user?.phone,
+          city: user?.city,
+          paymentMethod: payment,
+          itemsPrice: priceMemo,
+          shippingPrice: deliveryPriceMemo,
+          totalPrice: totalPriceMemo,
+          user: user?.id,
+          isPaid: true,
+          email: user?.email,
+        };
+        // Use the mutate function provided by useMutation
+        const result = await mutationAddOrder.mutateAsync(data);
     
-    // Custom component to wrap the PayPalButtons and show loading spinner
-    const ButtonWrapper = ({ showSpinner }) => {
-        const [{ isPending }] = usePayPalScriptReducer();
-    
-        return (
-            <>
-                { (showSpinner && isPending) && <div className="spinner" /> }
-                <PayPalButtons
-                    style={style}
-                    disabled={false}
-                    forceReRender={[style]}
-                    fundingSource={undefined}
-                    createOrder={onSuccessPaypal}
-                    onApprove={addPaymentScript}
-                />
-            </>
-        );
-    }
-    
+        // Assuming that the result contains the order ID
+        return result.orderId; // Replace with the actual property in the result
+      };
+
 
     useEffect(() => {
         if(!window.paypal) {
@@ -386,16 +350,16 @@ const PaymentPage = () => {
                             </WrapperTotal>
                             </div>
                             {payment === 'paypal' && sdkReady ? (
-                                <div style={{marginLeft: '40px', width: '360px'}}>
-                                    <PayPalScriptProvider 
-                                        amount={Math.round(totalPriceMemo / 30000)}
-                                        // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                                        onSuccess={onSuccessPaypal}
-                                        onError={() => {
-                                          alert('Error')
-                                        }}
-                                        options={{ clientId: "test", components: "buttons", currency: "USD" }}>
-                                        <ButtonWrapper showSpinner={false} />
+                                <div style={{width: '320px'}}>
+                                    <PayPalScriptProvider >
+                                        <PayPalButtons
+                                            amount={Math.round(totalPriceMemo / 10000000)}
+                                            // createOrder={createOrder}
+                                            onApprove={onApprove}
+                                            onError={() => {
+                                                alert('Error')
+                                              }}
+                                        />
                                     </PayPalScriptProvider>
                                 </div>
                                  
@@ -406,10 +370,9 @@ const PaymentPage = () => {
                                     styleButton={{
                                         background: 'rgb(255, 57, 69)',
                                         height: '48px',
-                                        width: '360px',
+                                        width: '320px',
                                         border: 'none',
                                         borderRadius: '4px',
-                                        marginLeft: '40px'
                                     }}
                                     textButton={'Đặt hàng'}
                                     styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}>

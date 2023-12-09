@@ -305,10 +305,9 @@ const OrderPage = () => {
                             styleButton={{
                                 background: 'rgb(255, 57, 69)',
                                 height: '48px',
-                                width: '360px',
+                                width: '320px',
                                 border: 'none',
                                 borderRadius: '4px',
-                                marginLeft: '40px'
                             }}
                             textButton={'Mua hàng'}
                             styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
