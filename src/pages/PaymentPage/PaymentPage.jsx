@@ -14,23 +14,18 @@ import { updateUser } from '../../redux/slides/userSlide';
 import { useNavigate } from 'react-router-dom';
 import * as message from '../../components/Message/Message';
 import { removeAllOrderProduct } from '../../redux/slides/orderSlide';
-import { PayPalScriptProvider, PayPalButtons,  usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import * as PaymentService from '../../services/PaymentService'
 
 
 const PaymentPage = () => {
     const order = useSelector((state) => state.order)
     const user = useSelector((state) => state.user)
-    console.log('user', user)
-
-    // This value is from the props in the UI
-    const style = {"layout":"vertical"};
 
     const [delivery, setDelivery] = useState('fast')
     const [payment, setPayment] = useState('later_money')
     const navigate = useNavigate()
     const [sdkReady, setSdkReady] = useState(false)
-    const [clientId, setClientId] = useState('');
     const [isOpenModalUpdateInfo, setIsOpenModalUpdateInfo] = useState(false)
     const [stateUserDetails, setStateUserDetails] = useState({
         name: '',
@@ -128,26 +123,6 @@ const PaymentPage = () => {
         setIsOpenModalUpdateInfo(false)
     }
 
-    const onSuccessPaypal = (details, data) => {
-        mutationAddOrder.mutate({
-            token: user?.access_token,
-            orderItems: order?.orderItemsSelected,
-            fullName: user?.name,
-            address: user?.address, 
-            phone: user?.phone, 
-            city: user?.city,
-            paymentMethod: payment,
-            itemsPrice: priceMemo,
-            shippingPrice: deliveryPriceMemo,
-            totalPrice: totalPriceMemo,
-            user: user?.id,
-            isPaid: true,
-            paidAt: details.update_time,
-            email: user?.email,
-        })
-        console.log('details, data', details, data)
-    }
-
     const mutationUpdate = useMutationHooks(
         (data) => {
           const {  
@@ -171,7 +146,6 @@ const PaymentPage = () => {
           token,
           ...rests
            } = data
-           console.log('data', data)
           const res = OrderService.createOrder(
             id,
             {...rests},

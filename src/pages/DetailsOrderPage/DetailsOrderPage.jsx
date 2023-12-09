@@ -63,13 +63,14 @@ const DetailsOrderPage = () => {
           </WrapperInfoUser>
         </WrapperHeaderUser>
         <WrapperStyleContent>
-          <div style={{flex:1,display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <div style={{flex:1, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <div style={{width: '670px'}}>Sản phẩm</div>
             <WrapperItemLabel>Giá</WrapperItemLabel>
             <WrapperItemLabel>Số lượng</WrapperItemLabel>
             <WrapperItemLabel>Giảm giá</WrapperItemLabel>
           </div>
           {data?.orderItems?.map((order) => {
+            console.log('order', order)
             return (
               <WrapperProduct>
                 <WrapperNameProduct>
@@ -83,13 +84,17 @@ const DetailsOrderPage = () => {
                     }}
                   />
                   <div style={{
+                    fontSize: '20px',
+                    fontWeight: 'bold',
+                    color: 'rgb(24, 108, 145)',
                     width: 260,
                     overflow: 'hidden',
                     textOverflow:'ellipsis',
                     whiteSpace:'nowrap',
-                    marginLeft: '10px',
+                    marginLeft: '20px',
+                    marginTop: '20px',
                     height: '70px',
-                  }}>Điện thoại</div>
+                  }}>{order?.name}</div>
                 </WrapperNameProduct>
                 <WrapperItem>{convertPrice(order?.price)}</WrapperItem>
                 <WrapperItem>{order?.amount}</WrapperItem>
