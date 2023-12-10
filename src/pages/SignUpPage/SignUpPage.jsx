@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { WrapperContainerLeft, WrapperContainerRight, WrapperTextLight } from "./style";
 import InputForm from "../../components/InputForm/InputForm";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import imagelogo  from '../../assets/images/logo-login.png'
-import { Image } from 'antd';
+import imageLogo  from '../../assets/images/logo-login.png'
+import imageGoogle  from '../../assets/images/google.png'
+import { Button, Image } from 'antd';
 import { EyeFilled, EyeInvisibleFilled } from '@ant-design/icons'
 import { useNavigate } from "react-router-dom";
 import * as UserService from '../../services/UserService'
@@ -51,6 +52,13 @@ const SignUpPage = () =>{
   const handleSignUp = () => {
     mutation.mutate({email, password, confirmPassword})
   }
+
+  const googleAuth = () => {
+    window.open(
+      `${process.env.REACT_APP_API_URL}/auth/google/callback`,
+      "_self"
+    );
+  };
     return (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0, 0, 0, 0.53)', height: '100vh' }}>
         <div style={{ width: '800px', height: '445px', borderRadius: '6px', background: '#fff', display: 'flex' }}>
@@ -116,11 +124,16 @@ const SignUpPage = () =>{
                 textButton={'Đăng ký'}
                 styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}>
             </ButtonComponent>
+            <p style={{textAlign: 'center', fontSize: '15px'}}>or</p>
+            <Button style={{width: '100%', height: '40px', fontWeight: '500', outline: 'none'}} onClick={googleAuth}>
+              <Image src= {imageGoogle} alt="google-icon" height="20px" width="20px" />
+                <span style={{margin: '0 5px'}}>Sign up with Google</span>
+            </Button>
           </Loading>
                 <p>Bạn đã có tài khoản?<WrapperTextLight onClick={handleNavigateSignIn}>Đăng nhập</WrapperTextLight></p>
             </WrapperContainerLeft>
             <WrapperContainerRight>
-            <Image src= {imagelogo} preview={false} alt="image-logo" height="203px" width="203px" />
+            <Image src= {imageLogo} preview={false} alt="image-logo" height="203px" width="203px" />
             <h4>Mua sắm tại webphone</h4>
             </WrapperContainerRight>
         </div>

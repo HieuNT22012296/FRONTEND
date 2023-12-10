@@ -1,5 +1,5 @@
 import React, { Component, Fragment, useEffect, useState } from 'react'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
 import DefaultComponent from './components/DefaultComponent/DefautComponent'
 import { routes } from './routes'
 import { useQuery } from '@tanstack/react-query'
@@ -16,10 +16,25 @@ import HomePage from './pages/HomePage/HomePage'
 
 function App() {
 
+  const [userGg, setUserGg] = useState(null)
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
   const user = useSelector((state) => state.user)
 
+  // const getUser = async () => {
+	// 	try {
+	// 		const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
+	// 		const { data } = await axios.get(url, { withCredentials: true });
+	// 		setUserGg(data.user._json);
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	getUser();
+	// }, []);
+  
   useEffect(() => {
     setIsLoading(true)
     const { decoded, storageData } = handleDecoded()
@@ -91,6 +106,11 @@ function App() {
       <Loading isLoading={isLoading}>
         <Router>
             <Routes>
+            {/* <Route
+					exact
+					path="/"
+					element={user ? <HomePage user={userGg} /> : <Navigate to="/login" />}
+				/> */}
               {routes.map((route) => {
                 const Page = route.page
                 const isCheckAuth = !route.isPrivate || user.isAdmin
@@ -101,6 +121,7 @@ function App() {
                       <Page />
                     </Layout>
                   } />
+                  
                 )
               })}
             </Routes>
