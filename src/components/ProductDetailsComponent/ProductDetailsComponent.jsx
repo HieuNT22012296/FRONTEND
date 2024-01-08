@@ -129,9 +129,9 @@ const ProductDetailsComponent = ({idProduct}) =>{
                 <WrapperPriceTextProduct>{convertPrice(productDetails?.price)}</WrapperPriceTextProduct>
             </WrapperPriceProduct>
             <WrapperAddressProduct>
-                <span>Giao đến:</span>
+                <span>Giao đến: </span>
                 <span className= 'address'>{user?.address}</span> -
-                <span className= 'change-address'>Đổi địa chỉ</span>
+                <span className= 'change-address'> Đổi địa chỉ</span>
             </WrapperAddressProduct>
             <LikeButtonComponent 
                 dataHref = 

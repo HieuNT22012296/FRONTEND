@@ -46,13 +46,13 @@ const TypeProductPage =() =>{
     }
 return (
     <Loading isLoading={loading}>
-        <div style={{ width: '100%', background:'#efefef', height: 'calc(100vh - 64px)'}}>
+        <div style={{ width: '100%', background:'#efefef', height: '100%'}}>
             <div style={{ width: '1270px', margin:'0 auto', height: '100%'}}>
                 <Row style={{ flexWrap: 'nowrap', paddingTop: '10px',height: 'calc(100% - 20px)' }}>
                     <WrapperNavbar span={4} >
                         <NavBarComponent />
                     </WrapperNavbar>
-                    <Col span={20} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Col span={23} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                         <WrapperProducts>
                             {products?.filter((prod) => {
                                 if(searchDebounce === '') {

@@ -42,8 +42,7 @@ const HomePage = () => {
         const res = await ProductService.getAllTypeProduct()
         if(res?.status === 'OK') {
             setTypeProducts(res?.data)
-        }
-        
+        }     
     }
 
     const {isLoading, data: products, isPreviousData} = useQuery(['products', limit, searchDebounce], fetchProductAll, {retry: 3, retryDelay: 1000, keepPreviousData: true})
@@ -53,81 +52,81 @@ const HomePage = () => {
         
     }, [])
 
+    // window.onload = function() {
+    //     var isHomePage = document.body.classList.contains('homepage');
+    //     if (isHomePage) {
+    //       // Hiển thị khung chatbot
+    //       document.getElementById('chatbot-frame').style.display = 'block';
+    //     } else {
+    //       // Ẩn khung chatbot
+    //       document.getElementById('chatbot').style.display = 'none';
+    //     }
+    // };
+
     return (
         <Loading isLoading={isLoading || loading}>
+
             <div className="container-wrapper">
                 <CustomContainer >
                     <CustomRowType className="text-center">
-                    {typeProducts.map((item) => (
-                        <CustomColType  key={item} >
-                        <TypeProduct name={item} />
-                        </CustomColType >
-                    ))}
+                        {typeProducts.map((item) => (
+                            <CustomColType  key={item} >
+                                <TypeProduct name={item} />
+                            </CustomColType >
+                        ))}
                     </CustomRowType>
-             
-                    </CustomContainer>
+                </CustomContainer>
+            </div>
 
-
-                    </div>
-
-
-
-
-           
-                {/* <Col md={9}> */}
-                {/* <div className='body' style={{height: 'auto',width: '100%', backgroundColor: '#efefef', }}>
-                <div id="container" style={{height: '100%', width: '1270px', margin: '0 auto' }}> */}
-                <CustomContainer >
+            <CustomContainer >
                 <CustomRowSlider style={{marginTop: '10px'}}>
                     <SliderComponent arrImages={[Slider1, Slider2, Slider3, Slider4, Slider5, Slider6, Slider7, Slider8]} />
                 </CustomRowSlider>
-                </CustomContainer>
-                <CustomContainer style={{marginTop: '50px', alignContent:'center'}}>
-                        <CustomRowProduct >
-                            
-                            {products?.data?.map((product) => {
-                                return (
-                                <CardComponent
-                                    key={product._id}
-                                    id={product._id}
-                                    countInStock={product.countInStock}
-                                    description={product.description}
-                                    image={product.image}
-                                    name={product.name}
-                                    price={product.price}
-                                    rating={product.rating}
-                                    type={product.type}
-                                    discount={product.discount}
-                                    selled={product.selled}
-                                />
-                                )
+            </CustomContainer>
 
-                            })}
-                        </CustomRowProduct>
-                        </CustomContainer>
-                        <div style={{width:'100%', display:'flex', justifyContent:'center', marginTop: '10px', marginBottom: '50px'}}>
-                           
-                        <WrapperButtonMore 
-                            textButton={isPreviousData ? 'Load more': "Xem Thêm"} 
-                            type="outline" 
-                            styleButton={{
-                                border: `1px solid rgb(11,116,229)`,
-                                color: `${products?.total === products?.data?.length ? '#ccc' : 'rgb(11,116,229)'}`, 
-                                width: '240px', 
-                                height: '38px',
-                                borderRadius: '4px'
-                        }}
-                        
-                            disabled={products?.total === products?.data?.length || products?.totalPage === 1}
-                            styleTextButton={{ fontWeight: 500, color: products?.total === products?.data?.length && '#fff' }}
-                            onClick={() => setLimit((prev) => prev + 6)}
+            <CustomContainer style={{marginTop: '50px', alignContent:'center'}}>
+                <CustomRowProduct >   
+                    {products?.data?.map((product) => {
+                        return (
+                        <CardComponent
+                            key={product._id}
+                            id={product._id}
+                            countInStock={product.countInStock}
+                            description={product.description}
+                            image={product.image}
+                            name={product.name}
+                            price={product.price}
+                            rating={product.rating}
+                            type={product.type}
+                            discount={product.discount}
+                            selled={product.selled}
                         />
-                        
-                         </div>
-                        
-                        <ContactAndAboutUs />
+                        )
+
+                    })}
+                </CustomRowProduct>
+            </CustomContainer>
+
+            <div style={{width:'100%', display:'flex', justifyContent:'center', marginTop: '10px', marginBottom: '50px'}}>
                 
+                <WrapperButtonMore 
+                    textButton={isPreviousData ? 'Load more': "Xem Thêm"} 
+                    type="outline" 
+                    styleButton={{
+                        border: `1px solid rgb(11,116,229)`,
+                        color: `${products?.total === products?.data?.length ? '#ccc' : 'rgb(11,116,229)'}`, 
+                        width: '240px', 
+                        height: '38px',
+                        borderRadius: '4px'
+                }}
+                
+                    disabled={products?.total === products?.data?.length || products?.totalPage === 1}
+                    styleTextButton={{ fontWeight: 500, color: products?.total === products?.data?.length && '#fff' }}
+                    onClick={() => setLimit((prev) => prev + 6)}
+                />
+            </div>
                         
+            <ContactAndAboutUs />             
                         
         </Loading>   
     )

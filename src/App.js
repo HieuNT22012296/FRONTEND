@@ -120,8 +120,7 @@ function App() {
                     <Layout>
                       <Page />
                     </Layout>
-                  } />
-                  
+                  } />            
                 )
               })}
             </Routes>

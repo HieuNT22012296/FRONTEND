@@ -36,8 +36,8 @@ const DetailsOrderPage = () => {
   return (
    <Loading isLoading={isLoading}>
      <div style={{width: '100%', background: '#f5f5fa'}}>
-      <div style={{ width: '1270px', margin: '0 auto', height: '1270px'}}>
-        <h4>Chi tiết đơn hàng</h4>
+      <div style={{ width: '1270px', margin: '0 auto', height: '250px'}}>
+        <h3 style={{ padding: '20px', fontWeight: 'bold', textAlign: 'center'}}>Chi Tiết Đơn Hàng</h3>
         <WrapperHeaderUser>
           <WrapperInfoUser>
             <WrapperLabel>Địa chỉ người nhận</WrapperLabel>
@@ -63,7 +63,7 @@ const DetailsOrderPage = () => {
           </WrapperInfoUser>
         </WrapperHeaderUser>
         <WrapperStyleContent>
-          <div style={{flex:1, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          <div style={{flex:1, display: 'flex', marginTop: '35px', alignItems: 'center', justifyContent: 'space-between'}}>
             <div style={{width: '670px'}}>Sản phẩm</div>
             <WrapperItemLabel>Giá</WrapperItemLabel>
             <WrapperItemLabel>Số lượng</WrapperItemLabel>
@@ -114,7 +114,7 @@ const DetailsOrderPage = () => {
             <WrapperItem>{convertPrice(data?.shippingPrice)}</WrapperItem>
           </WrapperAllPrice>
           <WrapperAllPrice>
-            <WrapperItemLabel>Tổng cộng</WrapperItemLabel>
+            <WrapperItemLabel style={{fontWeight: 'bold'}}>Tổng cộng</WrapperItemLabel>
             <WrapperItem><WrapperItem>{convertPrice(data?.totalPrice)}</WrapperItem></WrapperItem>
           </WrapperAllPrice>
       </WrapperStyleContent>

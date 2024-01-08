@@ -8,6 +8,7 @@ import { Button, Image } from 'antd';
 import { EyeFilled, EyeInvisibleFilled } from '@ant-design/icons'
 import { useLocation, useNavigate } from "react-router-dom";
 import * as UserService from '../../services/UserService'
+import * as message from '../../components/Message/Message'
 import { useMutationHooks } from "../../hooks/useMutationHook";
 import Loading from "../../components/LoadingComponent/Loading";
 import jwt_decode from "jwt-decode";
@@ -21,19 +22,20 @@ const SignInPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-
     const navigate = useNavigate()
 
     const mutation = useMutationHooks(
       data => UserService.loginUser(data)
     )
     const {data, isLoading, isSuccess} = mutation
+    console.log('data',data)
     useEffect(() => {
       if (isSuccess && data) { // xoa && data
-        if(location?.state) {
-          navigate(location?.state)
-        }else {
+        if(data?.status == 'OK') {
+          message.success('Đăng nhập thành công')
           navigate('/')
+        }else {
+          message.error()
         }
         localStorage.setItem('access_token', JSON.stringify(data?.access_token))
         localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token))
@@ -70,7 +72,6 @@ const SignInPage = () => {
         email,
         password
       })
-      console.log('sign-in', email, password)
     }
 
     const googleAuth = () => {

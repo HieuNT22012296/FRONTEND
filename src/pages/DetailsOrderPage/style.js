@@ -71,9 +71,9 @@ export const WrapperItem = styled.div`
 `
 export const WrapperItemLabel = styled.div`
   width: 200px;
-  &:last-child {
-    font-weight: bold;
-  }
+  // &:last-child {
+  //   font-weight: bold;
+  // }
 `
 
 export const WrapperAllPrice = styled.div`

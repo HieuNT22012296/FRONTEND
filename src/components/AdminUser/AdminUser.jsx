@@ -164,7 +164,7 @@ const AdminUser = () => {
     clearFilters();
     // setSearchText('');
   };
-  const getColumnSearchProps = (dataIndex) => ({
+   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div
         style={{
@@ -236,7 +236,6 @@ const AdminUser = () => {
     //     text
     //   ),
   });
-
   const columns = [
     {
       title: 'Name',
@@ -275,12 +274,6 @@ const AdminUser = () => {
           value: false,
         },
       ],
-      // onFilter: (value, record) => {
-      //   if (value === '>=') {
-      //     return record.rating >= 3
-      //   } 
-      //   return record.rating <= 3
-      // }
     },
     {
       title: 'Action',
@@ -548,14 +541,14 @@ const dataTable = users?.data?.length && users?.data?.map((user) => {
                 rules={[{ required: true, message: 'Please input your avatar!' }]}
               >
                 <WrapperUploadFile onChange={handleOnChangeAvatarDetails} maxCount={1}>
-                  <Button style={{marginLeft: '170px', marginBottom: '70px', display: 'flex'}}>Chọn ảnh</Button>
+                  <Button style={{marginLeft: '170px', marginBottom: '10px', display: 'flex'}}>Chọn ảnh</Button>
                   {stateUserDetails?.avatar && (
                     <img src={stateUserDetails?.avatar} style={{
                         height: '60px',
                         width: '60px',
                         borderRadius: '50%',
                         objectFit: 'cover',
-                        marginLeft: '115px',
+                        marginLeft: '185px',
                         marginTop: '10px'
         
                     }} alt="avatar"/>
@@ -565,7 +558,7 @@ const dataTable = users?.data?.length && users?.data?.map((user) => {
               
 
               <Form.Item wrapperCol={{ offset: 13, span: 16 }}>
-                <Button type="primary" htmlType="submit">
+                <Button style={{margin: '5px'}} type="primary" htmlType="submit">
                   Apply
                 </Button>
               </Form.Item>

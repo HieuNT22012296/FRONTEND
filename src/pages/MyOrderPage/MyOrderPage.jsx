@@ -70,6 +70,7 @@ const MyOrderPage = () => {
     mutation.mutate({ id: user.id, token:state?.token, orderItems: order?.orderItems, idOrder : order._id }, {
       onSuccess: () => {
         queryOrder.refetch()
+        message.success('Hủy đơn hàng thành công')
       },
     })
   }
@@ -114,7 +115,7 @@ const MyOrderPage = () => {
     <Loading isLoading={isLoading || isLoadingCancel}>
       <WrapperContainer>
         <div style={{height: '100%', width: '1270px', margin: '0 auto'}}>
-          <h4 style={{fontSize: '20px', textAlign: 'center'}}>Đơn hàng của tôi</h4>
+          <h4 style={{fontSize: '20px', textAlign: 'center', padding: '20px', fontWeight: 'bold'}}>Đơn hàng của tôi</h4>
           <WrapperListOrder>
             {data?.map((order) => {
               return (

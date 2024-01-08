@@ -25,16 +25,15 @@ const SignUpPage = () =>{
     data => UserService.signUpUser(data)
   )
 
-  const {data, isLoading, isSuccess, isError} = mutation
-
+  const {data, isLoading, isSuccess} = mutation
   useEffect(() => {
-    if (isSuccess) {
-      message.success()
+    if (isSuccess && data?.status == 'OK') {
+      message.success('Đăng ký thành công')
       handleNavigateSignIn()
-    } else if (isError) {
+    } else if (data?.status == 'ERR') {
       message.error()
     }
-  }, [isSuccess, isError])
+  }, [isSuccess])
   const handleOnchangeEmail = (value) => {
     setEmail(value)
   }

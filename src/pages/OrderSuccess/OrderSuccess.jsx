@@ -23,8 +23,8 @@ const OrderSuccess = () => {
         <div style={{background: '#f5f5fa', with: '100%', height: '100vh'}}>
             <Loading isLoading={false}>
                 <div style={{height: '100%', width: '1270px', margin: '0 auto'}}>
-                    <h3 style={{fontWeight: 'bold'}}>Đơn Hàng Đặt Thành Công</h3>
-                    <div style={{ display: 'flex', justifyContent: 'center'}}>
+                    <h1 style={{fontWeight: 'bold', padding: '20px', textAlign: 'center'}}>Đơn Hàng Đặt Thành Công</h1>
+                    <div style={{ display: 'flex', justifyContent: 'center', }}>
                         <WrapperContainer>
                             <WrapperInfo>
                                 <div>
@@ -68,9 +68,12 @@ const OrderSuccess = () => {
                                 })}
                                 
                             </WrapperItemOrderInfo>
+                            <WrapperItemOrderInfo>
                                 <span>
-                                    <span style={{ fontWeight: 'bold', fontSize: '25px', color: 'red' }}>Tổng tiền: {convertPrice(state?.totalPriceMemo)}</span>
+                                    <span style={{ fontWeight: 'bold', fontSize: '25px', color: 'red'}}>Tổng tiền: {convertPrice(state?.totalPriceMemo)}</span>
                                 </span>  
+                            </WrapperItemOrderInfo>
+                                
                         </WrapperContainer>
                         
                     </div>

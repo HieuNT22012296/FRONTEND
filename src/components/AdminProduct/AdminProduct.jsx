@@ -703,14 +703,14 @@ const dataTable = products?.data?.length && products?.data?.map((product) => {
                 rules={[{ required: true, message: 'Please input your image!' }]}
               >
                 <WrapperUploadFile onChange={handleOnChangeAvatarDetails} maxCount={1}>
-                  <Button style={{marginLeft: '170px', marginBottom: '70px', display: 'flex'}}>Chọn ảnh</Button>
+                  <Button style={{marginLeft: '170px', marginBottom: '10px', display: 'flex'}}>Chọn ảnh</Button>
                   {stateProductDetails?.image && (
                     <img src={stateProductDetails?.image} style={{
                         height: '60px',
                         width: '60px',
                         borderRadius: '50%',
                         objectFit: 'cover',
-                        marginLeft: '115px',
+                        marginLeft: '185px',
                         marginTop: '10px'
         
                     }} alt="avatar"/>
@@ -720,7 +720,7 @@ const dataTable = products?.data?.length && products?.data?.map((product) => {
               
 
               <Form.Item wrapperCol={{ offset: 13, span: 16 }}>
-                <Button type="primary" htmlType="submit">
+                <Button style={{margin: '5px'}} type="primary" htmlType="submit">
                   Apply
                 </Button>
               </Form.Item>

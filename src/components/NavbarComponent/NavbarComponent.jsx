@@ -14,7 +14,9 @@ const NavBarComponent = () => {
     switch (type) {
       case 'text':
         return options.map((option) => {
-          return <WrapperTextValue>{option}</WrapperTextValue>;
+          return (
+            <WrapperTextValue>{option}</WrapperTextValue>
+          )
         });
       case 'checkbox':
         return (
@@ -61,7 +63,7 @@ const NavBarComponent = () => {
     <div>
       <WrapperLableText>Lable</WrapperLableText>
       <WrapperContent>
-        {renderContent('text', ['Iphone', 'Oppo', 'Samsung'])}
+        {renderContent('text', ['Honor', 'Mobell', 'OPPO', 'SAMSUNG', 'VIVO', 'XIAOMI', 'iPhone', 'realme'])}
       </WrapperContent>
     </div>
   );

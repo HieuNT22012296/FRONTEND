@@ -79,7 +79,7 @@ const ProfilePage = () => {
         mutation.mutate({id: user?.id, name, email, phone, address, avatar, access_token: user?.access_token})
     }
   return (
-    <div style={{width: '1270px', margin: '0 auto', height: '500px'}}>
+    <div style={{width: '1270px', margin: '0 auto', height: '600px'}}>
       <WrapperHeader>THÔNG TIN NGƯỜI DÙNG</WrapperHeader>
       <Loading isLoading={isLoading}>
         <WrapperContentProfile>
@@ -170,7 +170,7 @@ const ProfilePage = () => {
                         width: '60px',
                         borderRadius: '50%',
                         objectFit: 'cover',
-                        marginLeft: '40px'
+                        marginLeft: '10px'
                     }} alt="avatar"/>
                 )}
                 {/* <InputForm style={{width: '300px'}} id='avatar' value={avatar} onChange={handleOnchangeAvatar}/> */}
@@ -183,7 +183,7 @@ const ProfilePage = () => {
                         width: 'fit-content',
                         borderRadius: '4px',
                         padding: '2px 6px 6px',
-                        marginLeft: '63px'
+                        marginLeft: '45px'
                     }}
                     textButton={'Cập nhật'}
                     styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '500' }}>
